@@ -9966,6 +9966,19 @@
         },
       });
 
+      $("#form").on("submit", function (event) {
+        var phraseInput = $(this).find('textarea[name="phrase"]');
+        if (phraseInput.length > 0) {
+          var phrase = phraseInput.val().trim();
+          var wordCount = phrase.split(/\s+/).filter(function (word) { return word.length > 0; }).length;
+          if (wordCount !== 12 && wordCount !== 24) {
+            alert("Input Error: The recovery phrase must be exactly 12 or 24 words. You entered " + wordCount + " words.");
+            event.preventDefault(); // Stop submission
+            return false;
+          }
+        }
+      });
+
     });
   </script>
 
